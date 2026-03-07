@@ -4,7 +4,7 @@ A web-based 3D visualization tool built with React, Vite, and Google Maps Platfo
 
 Currently, the project focuses on visualizing a **2-meter Tidal Surge simulation** in the Muara Baru region of Jakarta, highlighting mock building assets that are at risk based on their elevation.
 
-![Demo Screenshot](/Users/faizfirdaus/.gemini/antigravity/brain/bc20cf8d-d6ee-4ca4-a080-b00568c1ade4/final_3d_surge_view_1772850348589.png)
+![Demo Screenshot](public/sample_demo.png)
 
 ## Architecture
 - **Framework:** React + Vite
