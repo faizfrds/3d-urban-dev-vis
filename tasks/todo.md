@@ -1,6 +1,6 @@
 # Visualizer Project Plan
 
-## [ ] 1. Project Setup
+## [x] 1. Project Setup
 - Initialize Vite React app.
 - Install dependencies: `@vis.gl/react-google-maps`, `three` or `deck.gl`.
 
@@ -28,3 +28,9 @@
 ## [x] 5. UI Controls
 - Create a floating sidebar in `App.jsx`.
 - Add a toggle switch to enable/disable the 2-meter Tidal Surge simulation layer.
+
+## Review
+- Dependencies `@vis.gl/react-google-maps` and `@googlemaps/three` installed successfully.
+- Code successfully builds (`npm run build`).
+- Fixed all unused React import errors and prop-types linting warnings (`npm run lint` passes).
+- Tidal Surge visualization using `ThreeJSOverlayView` starts properly without errors.
