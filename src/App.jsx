@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import { MapComponent } from './components/MapComponent';
 import './App.css'; 
@@ -7,6 +7,7 @@ import './App.css';
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [isSurgeEnabled, setIsSurgeEnabled] = useState(false);
+  const [isZoningEnabled, setIsZoningEnabled] = useState(true);
 
   if (!apiKey) {
     return (
@@ -22,7 +23,10 @@ function App() {
       <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
         
         {/* The 3D Map Component */}
-        <MapComponent isSurgeEnabled={isSurgeEnabled} />
+        <MapComponent 
+          isSurgeEnabled={isSurgeEnabled} 
+          isZoningEnabled={isZoningEnabled} 
+        />
 
         {/* Floating Sidebar UI */}
         <div style={{
@@ -44,6 +48,18 @@ function App() {
             Muara Baru - Climate Risk Assessment
           </p>
           
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+            <span style={{ fontWeight: '500', color: '#444' }}>3D Zoning Volumes</span>
+            <label className="switch">
+              <input 
+                type="checkbox" 
+                checked={isZoningEnabled}
+                onChange={(e) => setIsZoningEnabled(e.target.checked)}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ fontWeight: '500', color: '#444' }}>Simulate 2m Tidal Surge</span>
             <label className="switch">
@@ -59,7 +75,7 @@ function App() {
           {isSurgeEnabled && (
             <div style={{ marginTop: '15px', padding: '10px', backgroundColor: '#ffecec', borderRadius: '8px', borderLeft: '4px solid #ff4444' }}>
               <p style={{ margin: 0, fontSize: '0.85rem', color: '#cc0000' }}>
-                <strong>Warning:</strong> The simulated 2-meter surge marks highlighted properties at risk of significant flooding.
+                <strong>Warning:</strong> The simulated 2-meter surge marks highlighted properties at risk of flooding.
               </p>
             </div>
           )}

@@ -1,0 +1,59 @@
+[
+  {
+    "type": "Feature",
+    "properties": {
+      "Zoning_Type": "Commercial",
+      "Max Height": 150
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [106.8456, -6.2088],
+          [106.8466, -6.2088],
+          [106.8466, -6.2078],
+          [106.8456, -6.2078],
+          [106.8456, -6.2088]
+        ]
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "Zoning_Type": "Residential",
+      "Max Height": 50
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [106.8436, -6.2088],
+          [106.8446, -6.2088],
+          [106.8446, -6.2078],
+          [106.8436, -6.2078],
+          [106.8436, -6.2088]
+        ]
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "Zoning_Type": "Mixed-Use",
+      "Max Height": 100
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [106.8476, -6.2088],
+          [106.8486, -6.2088],
+          [106.8486, -6.2078],
+          [106.8476, -6.2078],
+          [106.8476, -6.2088]
+        ]
+      ]
+    }
+  }
+]
