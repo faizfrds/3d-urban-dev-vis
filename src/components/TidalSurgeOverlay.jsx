@@ -30,8 +30,7 @@ export const TidalSurgeOverlay = ({ isSurgeEnabled }) => {
     meshGroupRef.current = group;
 
     // 1. Create the Tidal Surge Plane (2 meters above ground)
-    // A large plane covering the immediate area
-    const planeGeometry = new THREE.PlaneGeometry(2000, 2000); 
+    const planeGeometry = new THREE.PlaneGeometry(1, 1); // Unit size, will scale dynamically
     const waterMaterial = new THREE.MeshStandardMaterial({
       color: 0x0066ff,
       transparent: true,
@@ -40,13 +39,50 @@ export const TidalSurgeOverlay = ({ isSurgeEnabled }) => {
     });
     const surgePlane = new THREE.Mesh(planeGeometry, waterMaterial);
     
-    // The anchor altitude is 0, so moving it up on the Z axis elevates it relative to the ground.
-    // We rotate the plane to lay flat (X-axis rotation)
-    // In ThreeJSOverlayView, Z is typically up depending on how latLngAltitudeToVector3 defines space.
-    // By default, Three.js axes map to East (X), North (Y), Up (Z) when anchored.
     surgePlane.rotation.x = -Math.PI / 2;
     surgePlane.position.z = TIDAL_SURGE_HEIGHT;
     group.add(surgePlane);
+
+    // Update plane size and position when map bounds change
+    const updateSurgePlane = () => {
+      const bounds = map.getBounds();
+      if (!bounds) return;
+
+      const ne = bounds.getNorthEast();
+      const sw = bounds.getSouthWest();
+
+      // Top right corner
+      const neVec3 = new THREE.Vector3();
+      overlay.latLngAltitudeToVector3({ lat: ne.lat(), lng: ne.lng(), altitude: TIDAL_SURGE_HEIGHT }, neVec3);
+      
+      // Bottom left corner
+      const swVec3 = new THREE.Vector3();
+      overlay.latLngAltitudeToVector3({ lat: sw.lat(), lng: sw.lng(), altitude: TIDAL_SURGE_HEIGHT }, swVec3);
+
+      // Distance in Three.js units
+      const width = Math.abs(neVec3.x - swVec3.x);
+      const height = Math.abs(neVec3.y - swVec3.y); // Y is North/South in WebGL Overlay View
+
+      surgePlane.scale.set(width * 2, height * 2, 1); // Scale x2 just to ensure it bleeds past the edges slightly
+
+      // Center the plane to the middle of the current screen
+      const center = map.getCenter();
+      const centerVec3 = new THREE.Vector3();
+      overlay.latLngAltitudeToVector3({ lat: center.lat(), lng: center.lng(), altitude: TIDAL_SURGE_HEIGHT }, centerVec3);
+      
+      surgePlane.position.x = centerVec3.x;
+      surgePlane.position.y = centerVec3.y;
+      
+      overlay.requestRedraw();
+    };
+
+    // Listen to bounds changes to keep the surge plane covering the screen
+    const listener = map.addListener('bounds_changed', updateSurgePlane);
+    
+    // Initial size calculation
+    if (map.getBounds()) {
+      updateSurgePlane();
+    }
 
     // 2. Mock 'At-Risk' Building Indicators
     const boxGeometry = new THREE.BoxGeometry(15, 15, 15);
@@ -80,6 +116,7 @@ export const TidalSurgeOverlay = ({ isSurgeEnabled }) => {
     group.visible = isSurgeEnabled;
 
     return () => {
+      window.google.maps.event.removeListener(listener);
       if (overlayRef.current) {
         overlayRef.current.setMap(null);
       }
