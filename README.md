@@ -1,7 +1,7 @@
 # 3D Urban Development Visualizer
 
 A web-based 3D visualization tool built with React, Vite, and Google Maps Platform. It leverages **Photorealistic 3D Tiles** and **WebGL Overlay View** with [Three.js](https://threejs.org/) to simulate urban scenarios. 
-
+###Tech Stack: Google Maps API, Google BigQuery, Gemini, Three.js, Vite, React
 Currently, the project focuses on visualizing a **2-meter Tidal Surge simulation** in the Muara Baru region of Jakarta, highlighting mock building assets that are at risk based on their elevation.
 
 ![Demo Screenshot](public/sample_demo.png)
