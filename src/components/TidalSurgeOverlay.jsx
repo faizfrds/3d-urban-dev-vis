@@ -1,5 +1,5 @@
 // src/components/TidalSurgeOverlay.jsx
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMap } from '@vis.gl/react-google-maps';
 import * as THREE from 'three';
 import { ThreeJSOverlayView } from '@googlemaps/three';
@@ -7,6 +7,7 @@ import { mockBuildingAssets } from '../data/mockBuildingAssets';
 
 const TIDAL_SURGE_HEIGHT = 2; // meters
 
+// eslint-disable-next-line react/prop-types
 export const TidalSurgeOverlay = ({ isSurgeEnabled }) => {
   const map = useMap();
   const overlayRef = useRef(null);
@@ -83,6 +84,7 @@ export const TidalSurgeOverlay = ({ isSurgeEnabled }) => {
         overlayRef.current.setMap(null);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map]);
 
   useEffect(() => {
