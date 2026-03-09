@@ -2,6 +2,9 @@
 
 A web-based 3D visualization tool built with React, Vite, and Google Maps Platform. It leverages **Photorealistic 3D Tiles** and **WebGL Overlay View** with [Three.js](https://threejs.org/) to simulate urban scenarios. 
 
+## Design Doc 
+https://docs.google.com/document/d/1JYJujiL7Nh6Qj-PsO2lie2sCFpRFpRCPqpeEL1yIl0k/edit?tab=t.0#heading=h.9e7qa5j0o5mu
+
 ### Tech Stack
 Google Maps API, Google BigQuery, Gemini, Three.js, Vite, React
 
