@@ -6,7 +6,7 @@ A web-based 3D visualization tool built with React, Vite, and Google Maps Platfo
 https://docs.google.com/document/d/1JYJujiL7Nh6Qj-PsO2lie2sCFpRFpRCPqpeEL1yIl0k/edit?tab=t.0#heading=h.9e7qa5j0o5mu
 
 ### Tech Stack
-Google Maps API, Google BigQuery, Gemini, Three.js, Vite, React
+Google Maps API, Gemini, Three.js, Vite, React
 
 Currently, the project focuses on visualizing a **2-meter Tidal Surge simulation** in the Muara Baru region of Jakarta, highlighting mock building assets that are at risk based on their elevation.
 
